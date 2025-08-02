@@ -25,9 +25,18 @@
   # GTK theming - use alternative theme since Catppuccin GTK is archived
   gtk = {
     enable = true;
-    theme = {
-      name = "Adwaita-dark";  # Use Adwaita dark as alternative
-      package = pkgs.gnome-themes-extra;
+    catppuccin = {
+      enable = true;
+      accent = "flamingo";  # Options: blue, flamingo, green, lavender, maroon, mauve, peach, pink, red, rosewater, sapphire, sky, teal, yellow
+      flavor = "mocha";  # Options: latte, frappe, macchiato, mocha
+      icon = {
+        enable = true;
+        accent = "flamingo";  # Options: blue, flamingo, green, lavender, maroon, mauve, peach, pink, red, rosewater, sapphire, sky, teal, yellow;
+      };
+      # “standard”, “compact”
+      size = "normal";
+      # “black”, “rimless”, “normal”
+      tweaks = [ "black" ];
     };
   };
 
