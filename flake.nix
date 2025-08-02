@@ -13,9 +13,18 @@
   outputs = { nixpkgs, home-manager, catppuccin, ... }: {
     homeConfigurations.filip = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      
       modules = [
-        ./home.nix
+        # Enable unfree packages
+        {
+          nixpkgs.config.allowUnfree = true;
+        }
+        
+        # Import catppuccin module
         catppuccin.homeModules.catppuccin
+        
+        # Your home configuration
+        ./home.nix
       ];
     };
   };
