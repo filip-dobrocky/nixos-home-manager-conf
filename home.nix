@@ -8,7 +8,6 @@
     ./modules/waybar.nix
     ./modules/python.nix
     ./modules/shell.nix
-    ./modules/mount.nix
   ];
 
   home = {
