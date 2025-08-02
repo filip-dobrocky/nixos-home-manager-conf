@@ -10,7 +10,6 @@
     libreoffice
 
     # Development
-    git-credential-manager
     hugo
 
     # Media
