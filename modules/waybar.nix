@@ -169,6 +169,7 @@
           format = "{icon} {volume}%";
           format-muted = " {volume}%";
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          on-click-right = "pavucontrol";
           on-scroll-up = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
           on-scroll-down = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-";
           scroll-step = 5;

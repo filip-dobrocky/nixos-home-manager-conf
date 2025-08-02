@@ -21,19 +21,19 @@
       # Programs
       "$terminal" = "wezterm";
       "$fileManager" = "nautilus";
-      "$menu" = "pgrep -x wofi >/dev/null 2>&1 || wofi --dmenu --show drun";
+      "$menu" = "pgrep -x wofi >/dev/null 2>&1 && killall wofi || wofi --dmenu --show drun";
       "$mainMod" = "SUPER";
       
-      # Autostart - Add delay to waybar to let theme load first
       "exec-once" = [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
-        "sleep 2 && waybar"  # Add delay
+        "waybar"
+        "systemctl start --user xdg-desktop-portal-gtk.service"
       ];
       
       # Environment variables
       env = [
-        "XCURSOR_SIZE,16"
-        "HYPRCURSOR_SIZE,16"
+        "XCURSOR_SIZE,20"
+        "HYPRCURSOR_SIZE,20"
         "XCURSOR_THEME,catppuccin-mocha-dark-cursors"  # Use catppuccin cursor
         "TERMINAL,wezterm"
         "TERM,wezterm"
@@ -155,6 +155,7 @@
         "$mainMod, TAB, exec, $menu"
         "$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
+        "$mainMod, L, exec, hyprlock"
         
         # Hyprland config reload
         "$mainMod SHIFT, R, exec, hyprctl reload"
@@ -232,4 +233,6 @@
       ];
     };
   };
+
+
 }
