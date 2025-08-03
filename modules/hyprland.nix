@@ -21,29 +21,48 @@
       # Programs
       "$terminal" = "wezterm";
       "$fileManager" = "nautilus";
-      "$menu" = "pgrep -x wofi >/dev/null 2>&1 && killall wofi || wofi --dmenu --show drun";
+      "$menu" = "pgrep wofi && pkill wofi || wofi --dmenu --show drun";
       "$mainMod" = "SUPER";
       
       "exec-once" = [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
+        
+        # Start dbus and XDG services first
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "systemctl --user start xdg-desktop-portal.service"
+        
+        # Start GTK settings daemon to speed up GTK apps
+        "systemctl --user start xdg-desktop-portal-gtk.service"
+
         "waybar"
-        "systemctl start --user xdg-desktop-portal-gtk.service"
       ];
       
       # Environment variables
       env = [
-        "XCURSOR_SIZE,20"
-        "HYPRCURSOR_SIZE,20"
-        "XCURSOR_THEME,catppuccin-mocha-dark-cursors"  # Use catppuccin cursor
+        "XCURSOR_SIZE,24"
+        "HYPRCURSOR_SIZE,24"
+        "XCURSOR_THEME,catppuccin-mocha-dark-cursors"
         "TERMINAL,wezterm"
         "TERM,wezterm"
+        
+        # GTK and XDG settings
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "QT_QPA_PLATFORM,wayland;xcb"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+        "MOZ_ENABLE_WAYLAND,1"
+        "GDK_BACKEND,wayland,x11"
       ];
       
       # General settings - Remove manual colors to let Catppuccin apply
       general = {
-        gaps_in = 5;
-        gaps_out = 20;
-        border_size = 2;
+        gaps_in = 3;
+        gaps_out = 5;
+        border_size = 1;
         resize_on_border = true;
         allow_tearing = false;
         layout = "dwindle";
@@ -149,7 +168,9 @@
         "$mainMod, Return, exec, $terminal"
         "$mainMod SHIFT, Q, killactive"
         "ALT, F4, killactive"
-        "$mainMod SHIFT, E, exit"
+        "$mainMod SHIFT, E, exec, wlogout -p layer-shell"
+        ",XF86PowerOff, exec, wlogout -p layer-shell"
+
         "$mainMod, E, exec, $fileManager"
         "$mainMod SHIFT, SPACE, togglefloating"
         "$mainMod, TAB, exec, $menu"
@@ -200,6 +221,12 @@
         # Scroll through workspaces
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+
+        # Screenshot bindings
+        ", Print, exec, grimblast copy area"                    # Select area and copy to clipboard
+        "$mainMod, Print, exec, grimblast copy screen"          # Full screen to clipboard
+        "SHIFT, Print, exec, grimblast save area ~/Pictures/Screenshots/"    # Select area and save
+        "$mainMod SHIFT, Print, exec, grimblast save screen ~/Pictures/Screenshots/"  # Full screen and save
       ];
       
       # Volume and brightness keys
@@ -234,5 +261,46 @@
     };
   };
 
-
+  # wlogout configuration
+  programs.wlogout = {
+    enable = true;
+    layout = [
+      {
+        label = "lock";
+        action = "hyprlock";
+        text = "Lock";
+        keybind = "l";
+      }
+      {
+        label = "hibernate";
+        action = "systemctl hibernate";
+        text = "Hibernate";
+        keybind = "h";
+      }
+      {
+        label = "logout";
+        action = "hyprctl dispatch exit";
+        text = "Logout";
+        keybind = "e";
+      }
+      {
+        label = "shutdown";
+        action = "systemctl poweroff";
+        text = "Shutdown";
+        keybind = "s";
+      }
+      {
+        label = "suspend";
+        action = "systemctl suspend";
+        text = "Suspend";
+        keybind = "u";
+      }
+      {
+        label = "reboot";
+        action = "systemctl reboot";
+        text = "Reboot";
+        keybind = "r";
+      }
+    ];
+  };
 }

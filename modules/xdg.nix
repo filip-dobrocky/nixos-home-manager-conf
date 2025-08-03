@@ -3,11 +3,26 @@
   # XDG desktop integration - sets default applications
   xdg = {
     enable = true;
+    
+    # Configure XDG directories properly
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      documents = "$HOME/Documents";
+      download = "$HOME/Downloads";
+      pictures = "$HOME/Pictures";
+      videos = "$HOME/Videos";
+    };
+
     mimeApps = {
       enable = true;
       defaultApplications = {
         "application/x-terminal-emulator" = [ "org.wezfurlong.wezterm.desktop" ];
         "x-scheme-handler/terminal" = [ "org.wezfurlong.wezterm.desktop" ];
+        "image/png" = [ "org.gnome.eog.desktop" ];
+        "image/jpeg" = [ "org.gnome.eog.desktop" ];
+        "image/webp" = [ "org.gnome.eog.desktop" ];
+        "image/svg+xml" = [ "org.inkscape.Inkscape.desktop" ];
       };
     };
     
@@ -40,4 +55,14 @@
       StartupNotify=false
     '';
   };
+
+  # Add essential packages for proper file management including trash support
+  home.packages = with pkgs; [
+    glib           # For gsettings and GIO
+    shared-mime-info  # MIME type detection
+    desktop-file-utils  # Desktop file utilities
+    xdg-utils      # XDG utilities
+  ];
+  
+
 }

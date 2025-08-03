@@ -1,10 +1,9 @@
 { lib, pkgs, ... }:
 {
-
-  catppuccin.waybar = {
-    enable = true;
-    flavor = "mocha";  # Options: latte, frappe, macchiato, mocha
-  };
+  # Add wlogout for power menu
+  home.packages = with pkgs; [
+    wlogout  # Wayland logout menu
+  ];
 
   programs.waybar = {
     enable = true;
@@ -58,7 +57,7 @@
 
         "custom/power" = {
           format = " ";
-          on-click = "sysact";
+          on-click = "wlogout -p layer-shell";
           tooltip = false;
         };
 
@@ -232,7 +231,7 @@
 
     # Use your CSS as a fallback/override
     style = builtins.readFile ./waybar-style.css;
-  };
+  };  
 
   # Include the Python script
   xdg.dataFile."waybar/scripts/wttr.py" = {

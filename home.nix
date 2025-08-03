@@ -9,6 +9,7 @@
     ./modules/python.nix
     ./modules/shell.nix
     ./modules/security.nix
+    ./modules/audio.nix
   ];
 
   home = {
@@ -20,7 +21,6 @@
     sessionVariables = {
       TERMINAL = "wezterm";
       TERM = "wezterm";
-      GTK_THEME = "Adwaita-dark";
     };
   };
 }
