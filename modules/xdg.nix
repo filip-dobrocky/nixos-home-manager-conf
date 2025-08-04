@@ -13,18 +13,6 @@
       pictures = "$HOME/Pictures";
       videos = "$HOME/Videos";
     };
-
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "application/x-terminal-emulator" = [ "org.wezfurlong.wezterm.desktop" ];
-        "x-scheme-handler/terminal" = [ "org.wezfurlong.wezterm.desktop" ];
-        "image/png" = [ "org.gnome.eog.desktop" ];
-        "image/jpeg" = [ "org.gnome.eog.desktop" ];
-        "image/webp" = [ "org.gnome.eog.desktop" ];
-        "image/svg+xml" = [ "org.inkscape.Inkscape.desktop" ];
-      };
-    };
     
     # Force desktop entry to ~/.local/share/applications/ for proper priority
     dataFile."applications/nvim.desktop".text = ''

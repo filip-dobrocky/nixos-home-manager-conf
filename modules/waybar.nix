@@ -97,7 +97,7 @@
         # Other modules
         "wlr/taskbar" = {
           format = "{icon}";
-          icon-size = 12;
+          icon-size = 24;
           all-outputs = true;
           tooltip-format = "{name}: {title}";
           on-click = "activate";
