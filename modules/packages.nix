@@ -8,6 +8,9 @@
     lshw
     grimblast
     wl-clipboard
+    file-roller
+    nautilus-open-any-terminal
+    code-nautilus
 
     # Communication
     discord
