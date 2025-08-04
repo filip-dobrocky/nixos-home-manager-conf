@@ -7,17 +7,21 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    audio = {
+      url = "github:filip-dobrocky/audio.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = { nixpkgs, home-manager, catppuccin, ... }: {
+  outputs = { nixpkgs, home-manager, catppuccin, audio, ... }: {
     homeConfigurations.filip = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       
       modules = [
-        # Enable unfree packages
         {
           nixpkgs.config.allowUnfree = true;
+          nixpkgs.overlays = [ audio.overlays.default ];
         }
         
         # Import catppuccin module

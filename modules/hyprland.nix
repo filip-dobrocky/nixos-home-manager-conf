@@ -7,6 +7,12 @@
     accent = "blue";
   };
 
+  # Add required packages for keyboard layout support
+  home.packages = with pkgs; [
+    xkeyboard_config  # XKB keyboard configuration data
+    xorg.setxkbmap    # X keyboard extension
+  ];
+
   # Hyprland configuration - converted from ~/.config/hypr/hyprland.conf
   wayland.windowManager.hyprland = {
     enable = true;
@@ -139,9 +145,11 @@
         disable_hyprland_logo = true;
       };
       
-      # Input
+      # Input - Update with the layouts you want
       input = {
-        kb_layout = "us";
+        kb_layout = "us,cz,sk";
+        kb_variant = ",qwerty,qwerty";  # Empty for US, qwerty for CZ and SK
+        kb_options = "grp:alt_shift_toggle";
         follow_mouse = 1;
         sensitivity = 0;
         numlock_by_default = true;
@@ -227,12 +235,15 @@
         "$mainMod, Print, exec, grimblast copy screen"          # Full screen to clipboard
         "SHIFT, Print, exec, grimblast save area ~/Pictures/Screenshots/"    # Select area and save
         "$mainMod SHIFT, Print, exec, grimblast save screen ~/Pictures/Screenshots/"  # Full screen and save
+
+        # Keyboard layout switching
+        "$mainMod, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
       ];
       
       # Volume and brightness keys
       bindel = [
-        ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+"
+        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
         ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"

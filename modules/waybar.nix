@@ -90,7 +90,8 @@
           format = "{}";
           on-click = "hyprctl switchxkblayout at-translated-set-2-keyboard next";
           format-en = "EN";
-          format-fa = "FA";
+          format-cs = "CZ";
+          format-sk = "SK";
         };
 
         # Other modules
@@ -169,8 +170,8 @@
           format-muted = " {volume}%";
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           on-click-right = "pavucontrol";
-          on-scroll-up = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
-          on-scroll-down = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-";
+          on-scroll-up = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+";
+          on-scroll-down = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%-";
           scroll-step = 5;
           format-icons = {
             headphone = "";

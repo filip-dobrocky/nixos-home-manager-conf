@@ -9,6 +9,11 @@
     grimblast
     wl-clipboard
 
+    # Communication
+    discord
+    thunderbird
+    
+
     # Documents
     zathura
     libreoffice
@@ -21,15 +26,11 @@
     vlc
     eog
     rhythmbox
+    cheese
+    spotify
 
     # Graphics
     gimp
     inkscape
-
-    # Audio
-    supercollider-with-plugins
-    puredata
-    reaper
-    audacity
   ];
 }

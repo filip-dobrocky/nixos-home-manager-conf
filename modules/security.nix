@@ -11,8 +11,6 @@
   # Git configuration with hybrid approach
   programs.git = {
     enable = true;
-    userName = "Filip Dobrocky";
-    userEmail = "filip.dobrocky@gmail.com";
     
     extraConfig = {
       # Use GitHub CLI for GitHub authentication
