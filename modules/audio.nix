@@ -9,7 +9,20 @@
     paulxstretch
     
     chow-kick
+    chow-multitool
+    chow-phaser
+    chow-centaur
+    chow-tape-model
 
-    # iem-plugin-suite
+    vital
+
+    iem-plugin-suite
+    mcfx
+
+    plugdata
+
+    (plugincollider.override {
+      enableDynamicPlugins = true;
+    })
   ];
 }

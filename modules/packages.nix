@@ -9,8 +9,8 @@
     grimblast
     wl-clipboard
     file-roller
-    nautilus-open-any-terminal
     code-nautilus
+    nautilus-open-any-terminal
 
     # Communication
     discord
@@ -23,6 +23,7 @@
 
     # Development
     hugo
+    gh-copilot
 
     # Media
     ffmpeg
@@ -31,6 +32,7 @@
     rhythmbox
     cheese
     spotify
+    ocenaudio
 
     # Graphics
     gimp
