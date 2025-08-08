@@ -63,8 +63,14 @@
     };
     };
 
+
+    # Aliases
     programs.bash = {
     enable = true;
+    shellAliases = {
+        nixos-sys-rebuild = "sudo nixos-rebuild switch --flake ~/.nixos-config";
+        nixos-sys-clean = "sudo ~/.clean_old.sh";
+    };
     bashrcExtra = ''
         eval "$(starship init bash)"
     '';

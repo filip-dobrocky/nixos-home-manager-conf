@@ -23,6 +23,7 @@
 
     # Development
     hugo
+    vscode
     gh-copilot
 
     # Media
