@@ -70,6 +70,11 @@
     shellAliases = {
         nixos-sys-rebuild = "sudo nixos-rebuild switch --flake ~/.nixos-config";
         nixos-sys-clean = "sudo ~/.clean_old.sh";
+
+        jack256 = "pw-metadata -n settings 0 clock.force-quantum 256";
+        jack512 = "pw-metadata -n settings 0 clock.force-quantum 512";
+        jack1024 = "pw-metadata -n settings 0 clock.force-quantum 1024";
+        jackreset = "pw-metadata -n settings 0 clock.force-quantum";
     };
     bashrcExtra = ''
         eval "$(starship init bash)"
