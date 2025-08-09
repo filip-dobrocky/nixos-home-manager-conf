@@ -9,8 +9,9 @@
 
   # Add required packages for keyboard layout support
   home.packages = with pkgs; [
-    xkeyboard_config  # XKB keyboard configuration data
-    xorg.setxkbmap    # X keyboard extension
+    xkeyboard_config
+    xorg.setxkbmap
+    swayidle
   ];
 
   # Hyprland configuration - converted from ~/.config/hypr/hyprland.conf
@@ -32,16 +33,12 @@
       
       "exec-once" = [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
-        
-        # Start dbus and XDG services first
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "systemctl --user start xdg-desktop-portal.service"
-        
-        # Start GTK settings daemon to speed up GTK apps
         "systemctl --user start xdg-desktop-portal-gtk.service"
-
         "waybar"
+        "swayidle -w timeout 600 'hyprlock' before-sleep 'hyprlock' &"
       ];
       
       # Environment variables

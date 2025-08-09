@@ -42,6 +42,20 @@
       MimeType=application/x-directory;
       StartupNotify=false
     '';
+
+    # Override Reaper to use X11
+    dataFile."applications/cockos-reaper.desktop".text = ''
+      [Desktop Entry]
+      Encoding=UTF-8
+      Type=Application
+      Name=REAPER
+      Comment=REAPER
+      Categories=Audio;Video;AudioVideo;AudioVideoEditing;Recorder;
+      Exec=env GDK_BACKEND=x11 "${pkgs.reaper}/opt/REAPER/reaper" %F
+      Icon=cockos-reaper
+      MimeType=application/x-reaper-project;application/x-reaper-project-backup;application/x-reaper-theme
+      StartupWMClass=REAPER
+    '';
   };
 
   # Add essential packages for proper file management including trash support

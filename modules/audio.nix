@@ -1,10 +1,13 @@
 { lib, pkgs, ... }:
 {
   home.packages = with pkgs; [
-    supercollider-with-plugins
+    supercollider-with-sc3-plugins
     puredata
     reaper
     audacity
+    carla
+
+    lsp-plugins
 
     paulxstretch
     
