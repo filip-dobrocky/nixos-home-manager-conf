@@ -10,7 +10,6 @@
     ./modules/shell.nix
     ./modules/security.nix
     ./modules/audio.nix
-    ./modules/compat.nix
   ];
 
   home = {
