@@ -25,7 +25,7 @@
     plugdata
 
     (plugincollider.override {
-      enableDynamicPlugins = true;
+      # enableDynamicPlugins = true;
     })
   ];
 }

@@ -11,11 +11,11 @@
     file-roller
     code-nautilus
     nautilus-open-any-terminal
+    nix-index
 
     # Communication
     discord
     thunderbird
-    
 
     # Documents
     zathura
@@ -24,7 +24,10 @@
     # Development
     hugo
     vscode
+    zed-editor
     gh-copilot
+    gcc
+    libgcc
 
     # Media
     ffmpeg
@@ -36,7 +39,7 @@
     ocenaudio
 
     # Graphics
-    gimp
+    gimp3-with-plugins
     inkscape
   ];
 }
