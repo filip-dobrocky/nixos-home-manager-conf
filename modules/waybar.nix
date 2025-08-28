@@ -211,11 +211,11 @@
         network = {
           format = "{ifname}";
           format-wifi = " ";
-          format-ethernet = " ";
+          format-ethernet = "󰈀 ";
           format-disconnected = " ";
-          tooltip-format = " {ifname} via {gwaddr}";
+          tooltip-format = " {ifname} via {gwaddr}";
           tooltip-format-wifi = " {essid} ({signalStrength}%)";
-          tooltip-format-ethernet = " {ifname} {ipaddr}/{cidr}";
+          tooltip-format-ethernet = "󰈀 {ifname} {ipaddr}/{cidr}";
           tooltip-format-disconnected = "Disconnected";
           max-length = 50;
         };

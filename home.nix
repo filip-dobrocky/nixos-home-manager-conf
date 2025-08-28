@@ -5,6 +5,8 @@
     ./modules/appearance.nix
     ./modules/xdg.nix
     ./modules/hyprland.nix
+    ./modules/i3.nix
+    ./modules/polybar.nix
     ./modules/waybar.nix
     ./modules/python.nix
     ./modules/shell.nix
