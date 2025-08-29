@@ -11,15 +11,22 @@
     grimblast
     wezterm
     nautilus
+    feh
   ];
 
-  programs.i3 = {
+  xsession.windowManager.i3 = {
     enable = true;
+    package = pkgs.i3-gaps;
     config = {
       modifier = "Mod4";
       fonts = {
         names = [ "monospace" ];
         size = 10.0;
+      };
+
+      gaps = {
+        inner = 3;
+        outer = 5;
       };
 
       bars = [
@@ -73,7 +80,6 @@
         "Mod4+Shift+Up" = "move up";
         "Mod4+Shift+Down" = "move down";
         "Mod4+Shift+C" = "reload";
-        "Mod4+Shift+E" = "exit";
         "Mod4+Print" = "exec grimblast copy screen";
         "Shift+Print" = "exec grimblast save area ~/Pictures/Screenshots/";
         "Mod4+Shift+Print" = "exec grimblast save screen ~/Pictures/Screenshots/";
@@ -89,23 +95,12 @@
         "XF86AudioPlay" = "exec playerctl play-pause";
         "XF86AudioPrev" = "exec playerctl previous";
       };
-
-      floatingModifier = "Mod4";
-
-      gaps = {
-        inner = 3;
-        outer = 5;
-      };
-
-      exec = [
-        # Polybar (replace with your polybar config if needed)
-        "polybar example &"
-        # Lock on suspend and after 10 min idle
-        "${pkgs.xautolock}/bin/xautolock -time 10 -locker i3lock -detectsleep &"
-      ];
-
-      exec_always = [
-        # Set wallpaper (example, if using feh)
-        "feh --bg-scale ~/Pictures/wallpaper.png"
-      ];
     };
+
+    extraConfig = ''
+      exec --no-startup-id polybar example &
+      exec --no-startup-id ${pkgs.xautolock}/bin/xautolock -time 10 -locker i3lock -detectsleep &
+      exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
+    '';
+  };
+}

@@ -64,7 +64,7 @@
     shared-mime-info  # MIME type detection
     desktop-file-utils  # Desktop file utilities
     xdg-utils      # XDG utilities
+    xdg-desktop-portal
+    xdg-desktop-portal-gtk
   ];
-  
-
 }

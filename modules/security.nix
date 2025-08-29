@@ -2,10 +2,9 @@
 {
   # KeePassXC for password management and secret service
   home.packages = with pkgs; [
-    keepassxc          # Password manager with 2FA support
     libsecret          # For secret service API
-    seahorse           # GUI for managing secrets (optional)
     git-credential-manager
+    gnome-keyring
   ];
 
   # Git configuration with hybrid approach
@@ -43,4 +42,6 @@
     pinentry.package = pkgs.pinentry-gtk2;
     enableSshSupport = true;
   };
+
+  services.gnome-keyring.enable = true;
 }
